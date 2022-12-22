@@ -12,29 +12,23 @@ function BoxFilter() {
   const oneTransfer = useSelector((state) => state.oneTransfer)
   const twoTransfer = useSelector((state) => state.twoTransfer)
   const threeTransfer = useSelector((state) => state.threeTransfer)
-  // const lastreq = useSelector((state) => state.lastreq)
-  // const counter = noTransfer + oneTransfer + twoTransfer + threeTransfer
-
-  // const select = (e) => {
-  //   console.log(counter == 3 && !e.target.value)
-
-  //   if (counter == 3 && e.target.value) {
-  //     dispatch({ type: 'all' })
-  //   } else if (counter == 4) {
-  //     dispatch({ type: 'allOff' })
-  //     dispatch({ type: e.target.id })
-  //   } else {
-  //     dispatch({ type: e.target.id })
-  //   }
-  // }
 
   const select = (e) => {
-    dispatch({ type: 'allOff' }), dispatch({ type: e.target.id })
+    if (e.target.id == 'all' && all) {
+      dispatch({ type: 'allf' })
+    } else if (e.target.id == 'all' && !all) {
+      dispatch({ type: 'all' })
+    } else {
+      dispatch({ type: 'allOff' })
+      dispatch({ type: e.target.id })
+    }
   }
 
   useEffect(() => {
+    if (all) {
+      return
+    }
     if (noTransfer && oneTransfer && twoTransfer && threeTransfer) {
-      console.log(noTransfer)
       dispatch({ type: 'all' })
     }
   })
@@ -48,9 +42,9 @@ function BoxFilter() {
           id={'all'}
           value={all}
           type="checkbox"
-          // onClick={(e) => {
-          //   select(e)
-          // }}
+          onClick={(e) => {
+            select(e)
+          }}
         ></input>
         <img src={all ? chbch : chb} className="App-logo" alt="logo" />
         Все
