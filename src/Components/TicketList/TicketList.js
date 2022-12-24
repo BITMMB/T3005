@@ -7,7 +7,7 @@ import './TicketList.css'
 
 function TicketList() {
   return (
-    <div className="App">
+    <div className="">
       <ShowMoreBtn />
     </div>
   )
