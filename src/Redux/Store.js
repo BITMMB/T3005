@@ -1,4 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import reduxThunk from 'redux-thunk'
 
 const defaultState = {
   all: false,
@@ -7,10 +8,23 @@ const defaultState = {
   twoTransfer: false,
   threeTransfer: false,
   topFilter: 1,
+  searchId: 0,
+  tickets: [],
 }
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'searchId':
+      return {
+        ...state,
+        // searchId: id,
+      }
+    case 'tickets':
+      return {
+        ...state,
+        // tickets: data,
+      }
+
     case 'allOff':
       return {
         ...state,
@@ -66,5 +80,16 @@ const reducer = (state = defaultState, action) => {
       return state
   }
 }
-const store = createStore(reducer)
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose
+
+const loggerMiddleware = (store) => (next) => (action) => {
+  const result = next(action)
+  console.log(store.getState())
+  return result
+}
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware, reduxThunk)))
 export default store
