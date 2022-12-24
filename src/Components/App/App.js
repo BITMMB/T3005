@@ -1,22 +1,42 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import TopFilter from '../TopFilter'
 import BoxFilter from '../BoxFilter'
 import TicketList from '../TicketList'
 import Ticket from '../Ticket'
-// import getResourse from '../../Api/Api.js'
-import getId from '../../Api/Api.js'
+import getResourse from '../../Api/Api.js'
+// import getId from '../../Api/Api.js'
 
 import classes from './App.module.scss'
 import logo from './Logo.png'
 
 function App() {
   const dispatch = useDispatch()
-  // const searchId = useSelector((state) => searchId.all)
+  const searchId = useSelector((state) => state.searchId)
+  // const tickets = useSelector((state) => state.tickets)
 
-  const id = getId('https://aviasales-test-api.kata.academy/search')
-  dispatch({ type: 'searchId', searchId: id })
+  useEffect(() => {
+    getResourse('https://aviasales-test-api.kata.academy/search').then((id) => {
+      // console.log(id.searchId)
+      dispatch({ type: 'searchId', id: id.searchId })
+    })
+  }, [])
+
+  function getTicket() {
+    const url = `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
+    getResourse(url).then((ticketsList) => {
+      // let res = tickets.slice(0)
+      // console.log(tickets)
+      // res = res.push(ticketsList.tickets)
+      // console.log(ticketsList.tickets)
+      dispatch({ type: 'tickets', data: ticketsList.tickets })
+      // dispatch({ type: 'tickets', data: res })
+      // if (!ticketsList.stop) {
+      //   getTicket()
+      // }
+    })
+  }
 
   return (
     <div className={classes.app}>
@@ -24,7 +44,7 @@ function App() {
         <button
           className={classes.button}
           onClick={() => {
-            // getResourse('https://aviasales-test-api.kata.academy/search')
+            getTicket()
           }}
         >
           <img src={logo} className="App-logo" alt="logo" />

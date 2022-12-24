@@ -15,14 +15,17 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'searchId':
+      // console.log(action.id)
       return {
         ...state,
-        // searchId: id,
+        searchId: action.id,
       }
     case 'tickets':
+      console.log(action.data)
       return {
         ...state,
-        // tickets: data,
+
+        tickets: action.data,
       }
 
     case 'allOff':
@@ -85,9 +88,9 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose
 
-const loggerMiddleware = (store) => (next) => (action) => {
+const loggerMiddleware = () => (next) => (action) => {
   const result = next(action)
-  console.log(store.getState())
+  // console.log(store.getState())
   return result
 }
 

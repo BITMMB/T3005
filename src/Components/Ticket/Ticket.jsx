@@ -1,10 +1,15 @@
+import React from 'react'
+// import { useSelector } from 'react-redux'
+
 import classes from './Ticket.module.scss'
 
-function Ticket() {
+function Ticket({ el }) {
+  // const tickets = useSelector((state) => state.tickets)
+  console.log(el)
   return (
     <div className={classes.ticket}>
       <div className={classes.logo}>ffff</div>
-      <span className={classes.prise}>13400 Р</span>
+      <span className={classes.prise}>11 Р</span>
       <span className={classes.title}>MOW – HKT</span>
       <span className={classes.title}>MOW – HKT</span>
       <span className={classes.title}>В ПУТИ</span>
