@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import TopFilter from '../TopFilter'
 import BoxFilter from '../BoxFilter'
 import TicketList from '../TicketList'
-import Ticket from '../Ticket'
+// import Ticket from '../Ticket'
 import getResourse from '../../Api/Api.js'
 // import getId from '../../Api/Api.js'
 
@@ -26,15 +26,7 @@ function App() {
   function getTicket() {
     const url = `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
     getResourse(url).then((ticketsList) => {
-      // let res = tickets.slice(0)
-      // console.log(tickets)
-      // res = res.push(ticketsList.tickets)
-      // console.log(ticketsList.tickets)
       dispatch({ type: 'tickets', data: ticketsList.tickets })
-      // dispatch({ type: 'tickets', data: res })
-      // if (!ticketsList.stop) {
-      //   getTicket()
-      // }
     })
   }
 
@@ -54,7 +46,7 @@ function App() {
         <BoxFilter />
         <div className={classes.tickets}>
           <TopFilter />
-          <Ticket />
+          {/* <Ticket /> */}
           <TicketList />
         </div>
       </section>
