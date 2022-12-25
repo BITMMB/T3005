@@ -2,30 +2,40 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reduxThunk from 'redux-thunk'
 
 const defaultState = {
-  all: false,
-  noTransfer: false,
-  oneTransfer: false,
-  twoTransfer: false,
-  threeTransfer: false,
+  all: true,
+  noTransfer: true,
+  oneTransfer: true,
+  twoTransfer: true,
+  threeTransfer: true,
   topFilter: 1,
   searchId: 0,
+  ticketCount: 5,
+  isLoading: false,
   tickets: [],
 }
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'loading':
+      return {
+        ...state,
+        isLoading: action.load,
+      }
+    case 'count':
+      return {
+        ...state,
+        ticketCount: state.ticketCount + 5,
+      }
+
     case 'searchId':
-      // console.log(action.id)
       return {
         ...state,
         searchId: action.id,
       }
     case 'tickets':
-      // console.log(action.data)
       return {
         ...state,
-
-        tickets: action.data,
+        tickets: state.tickets.concat(action.data),
       }
 
     case 'allOff':
@@ -90,7 +100,6 @@ const composeEnhancers =
 
 const loggerMiddleware = () => (next) => (action) => {
   const result = next(action)
-  // console.log(store.getState())
   return result
 }
 

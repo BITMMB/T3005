@@ -1,15 +1,11 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-// import { useSelector } from 'react-redux'
-// import { v4 as uuidv4 } from 'uuid'
 import Logo from '../Logo/Logo.jsx'
 
 import classes from './Ticket.module.scss'
 
 function Ticket({ el }) {
-  // const tickets = useSelector((state) => state.tickets)
-  console.log(el)
   const t = (ticDate) => {
     const d = new Date(ticDate.date)
     const d1 = format(d, 'HH:mm')
@@ -31,8 +27,6 @@ function Ticket({ el }) {
     }
     return text
   }
-  // let f = el.segments[0].stops.join(', ')
-  // console.log(f.join(', '))
 
   return (
     <div className={classes.ticket}>
