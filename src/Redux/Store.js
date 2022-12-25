@@ -21,7 +21,7 @@ const reducer = (state = defaultState, action) => {
         searchId: action.id,
       }
     case 'tickets':
-      console.log(action.data)
+      // console.log(action.data)
       return {
         ...state,
 

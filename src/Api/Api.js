@@ -5,7 +5,7 @@ async function getResourse(url) {
   if (!res.ok) {
     throw new Error(`Bad connection ${url}`)
   }
-  // console.log(res.json())
+  //   console.log(res.json())
   return res.json()
 }
 
@@ -13,7 +13,6 @@ async function getResourse(url) {
 //   const res = await getResourse('https://aviasales-test-api.kata.academy/search')
 
 //   console.log(res.searchId)
-//   console.log(store.getState())
 // }
 
 export default getResourse
