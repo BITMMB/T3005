@@ -8,10 +8,10 @@ import ShowMoreBtn from '../ShowMoreBtn'
 import classes from './TicketList.module.scss'
 
 function TicketList() {
-  const noTransfer = useSelector((state) => state.aviaReducer.noTransfer)
-  const oneTransfer = useSelector((state) => state.aviaReducer.oneTransfer)
-  const twoTransfer = useSelector((state) => state.aviaReducer.twoTransfer)
-  const threeTransfer = useSelector((state) => state.aviaReducer.threeTransfer)
+  const transfer0 = useSelector((state) => state.aviaReducer.transfer0)
+  const transfer1 = useSelector((state) => state.aviaReducer.transfer1)
+  const transfer2 = useSelector((state) => state.aviaReducer.transfer2)
+  const transfer3 = useSelector((state) => state.aviaReducer.transfer3)
   const filter = useSelector((state) => state.aviaReducer.topFilter)
   const tickets = useSelector((state) => state.aviaReducer.tickets)
   const ticketCount = useSelector((state) => state.aviaReducer.ticketCount)
@@ -29,16 +29,16 @@ function TicketList() {
     return pice
   }
 
-  if (noTransfer) {
+  if (transfer0) {
     conCat(0)
   }
-  if (oneTransfer) {
+  if (transfer1) {
     conCat(1)
   }
-  if (twoTransfer) {
+  if (transfer2) {
     conCat(2)
   }
-  if (threeTransfer) {
+  if (transfer3) {
     conCat(3)
   }
   if (filter == 1) {

@@ -17,13 +17,10 @@ function BoxFilter() {
 
   const select = (e) => {
     if (e.target.id == 'all' && allTransfers) {
-      console.log(1)
       dispatch(allf())
     } else if (e.target.id == 'all' && !allTransfers) {
-      console.log(2)
       dispatch(all())
     } else {
-      console.log(3)
       dispatch(allOff())
     }
   }

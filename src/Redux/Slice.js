@@ -19,14 +19,14 @@ const aviaSlice = createSlice({
 
   reducers: {
     loading(state, action) {
-      state.isLoading = action.load
+      state.isLoading = action.payload
     },
 
     count(state) {
       state.ticketCount = state.ticketCount + 5
     },
     tickets(state, action) {
-      state.tickets = state.tickets.concat(action.data)
+      state.tickets = state.tickets.concat(action.payload)
     },
     allOff(state) {
       state.allTransfers = false
@@ -58,7 +58,7 @@ const aviaSlice = createSlice({
       state.transfer3 = !state.transfer3
     },
     topFilter(state, action) {
-      state.topFilter = action.value
+      state.topFilter = action.payload
     },
   },
 })

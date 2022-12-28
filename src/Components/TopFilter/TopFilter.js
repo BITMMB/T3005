@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { topFilter } from '../../Redux/Slice'
+
 import classes from './TopFilter.module.scss'
 
 function TopFilter() {
@@ -8,7 +10,7 @@ function TopFilter() {
   const filter = useSelector((state) => state.aviaReducer.topFilter)
 
   function chengeValue(e) {
-    dispatch({ type: 'topFilter', value: e.target.value })
+    dispatch(topFilter(e.target.value))
   }
 
   return (
