@@ -1,13 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
+import { count } from '../../Redux/Slice'
+
 import classes from './ShowMoreBtn.module.scss'
 
 function ShowMoreBtn() {
   const dispatch = useDispatch()
 
   function sLice() {
-    dispatch({ type: 'count' })
+    dispatch(count())
   }
 
   return (
