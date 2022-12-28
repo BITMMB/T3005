@@ -8,20 +8,20 @@ import ShowMoreBtn from '../ShowMoreBtn'
 import classes from './TicketList.module.scss'
 
 function TicketList() {
-  const noTransfer = useSelector((state) => state.noTransfer)
-  const oneTransfer = useSelector((state) => state.oneTransfer)
-  const twoTransfer = useSelector((state) => state.twoTransfer)
-  const threeTransfer = useSelector((state) => state.threeTransfer)
-  const filter = useSelector((state) => state.topFilter)
-  const tickets = useSelector((state) => state.tickets)
-  const ticketCount = useSelector((state) => state.ticketCount)
+  const noTransfer = useSelector((state) => state.aviaReducer.noTransfer)
+  const oneTransfer = useSelector((state) => state.aviaReducer.oneTransfer)
+  const twoTransfer = useSelector((state) => state.aviaReducer.twoTransfer)
+  const threeTransfer = useSelector((state) => state.aviaReducer.threeTransfer)
+  const filter = useSelector((state) => state.aviaReducer.topFilter)
+  const tickets = useSelector((state) => state.aviaReducer.tickets)
+  const ticketCount = useSelector((state) => state.aviaReducer.ticketCount)
 
   let pice = []
 
   function conCat(f) {
     pice = pice.concat(
       tickets.filter((t) => {
-        if (t.segments[0].stops.length == f) {
+        if (t.segments[0].stops.length == f && t.segments[1].stops.length == f) {
           return t
         }
       })

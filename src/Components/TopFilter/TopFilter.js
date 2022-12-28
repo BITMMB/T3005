@@ -5,7 +5,7 @@ import classes from './TopFilter.module.scss'
 
 function TopFilter() {
   const dispatch = useDispatch()
-  const filter = useSelector((state) => state.topFilter)
+  const filter = useSelector((state) => state.aviaReducer.topFilter)
 
   function chengeValue(e) {
     dispatch({ type: 'topFilter', value: e.target.value })

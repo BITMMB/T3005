@@ -1,35 +1,39 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { all, allOff, allf, noTransfer, oneTransfer, twoTransfer, threeTransfer } from '../../Redux/Slice'
+
 import chb from './Checkbox.png'
 import chbch from './Form.png'
 import classes from './BoxFilter.module.scss'
 
 function BoxFilter() {
   const dispatch = useDispatch()
-  const all = useSelector((state) => state.all)
-  const noTransfer = useSelector((state) => state.noTransfer)
-  const oneTransfer = useSelector((state) => state.oneTransfer)
-  const twoTransfer = useSelector((state) => state.twoTransfer)
-  const threeTransfer = useSelector((state) => state.threeTransfer)
+  const allTransfers = useSelector((state) => state.aviaReducer.allTransfers)
+  const transfer0 = useSelector((state) => state.aviaReducer.transfer0)
+  const transfer1 = useSelector((state) => state.aviaReducer.transfer1)
+  const transfer2 = useSelector((state) => state.aviaReducer.transfer2)
+  const transfer3 = useSelector((state) => state.aviaReducer.transfer3)
 
   const select = (e) => {
-    if (e.target.id == 'all' && all) {
-      dispatch({ type: 'allf' })
-    } else if (e.target.id == 'all' && !all) {
-      dispatch({ type: 'all' })
+    if (e.target.id == 'all' && allTransfers) {
+      console.log(1)
+      dispatch(allf())
+    } else if (e.target.id == 'all' && !allTransfers) {
+      console.log(2)
+      dispatch(all())
     } else {
-      dispatch({ type: 'allOff' })
-      dispatch({ type: e.target.id })
+      console.log(3)
+      dispatch(allOff())
     }
   }
 
   useEffect(() => {
-    if (all) {
+    if (allTransfers) {
       return
     }
-    if (noTransfer && oneTransfer && twoTransfer && threeTransfer) {
-      dispatch({ type: 'all' })
+    if (transfer0 && transfer1 && transfer2 && transfer3) {
+      dispatch(all())
     }
   })
 
@@ -40,13 +44,13 @@ function BoxFilter() {
         <input
           className={classes.checkbox}
           id={'all'}
-          value={all}
+          value={allTransfers}
           type="checkbox"
           onClick={(e) => {
             select(e)
           }}
         ></input>
-        <img src={all ? chbch : chb} className="App-logo" alt="logo" />
+        <img src={allTransfers ? chbch : chb} className="App-logo" alt="logo" />
         Все
       </label>
       <label className={classes.menu}>
@@ -54,49 +58,53 @@ function BoxFilter() {
           className={classes.checkbox}
           type="checkbox"
           id={'noTransfer'}
-          value={noTransfer}
+          value={transfer0}
           onClick={(e) => {
+            dispatch(noTransfer())
             select(e)
           }}
         ></input>
-        <img src={noTransfer ? chbch : chb} className="App-logo" alt="logo" />
+        <img src={transfer0 ? chbch : chb} className="App-logo" alt="logo" />
         Без пересадок
       </label>
       <label className={classes.menu}>
         <input
           className={classes.checkbox}
           type="checkbox"
-          id={'oneTransfer'}
-          value={oneTransfer}
+          id={'transfer1'}
+          value={transfer1}
           onClick={(e) => {
+            dispatch(oneTransfer())
             select(e)
           }}
         ></input>
-        <img src={oneTransfer ? chbch : chb} className="App-logo" alt="logo" />1 пересадка
+        <img src={transfer1 ? chbch : chb} className="App-logo" alt="logo" />1 пересадка
       </label>
       <label className={classes.menu}>
         <input
           className={classes.checkbox}
           type="checkbox"
-          id={'twoTransfer'}
-          value={twoTransfer}
+          id={'transfer2'}
+          value={transfer2}
           onClick={(e) => {
+            dispatch(twoTransfer())
             select(e)
           }}
         ></input>
-        <img src={twoTransfer ? chbch : chb} className="App-logo" alt="logo" />2 пересадки
+        <img src={transfer2 ? chbch : chb} className="App-logo" alt="logo" />2 пересадки
       </label>
       <label className={classes.menu}>
         <input
           className={classes.checkbox}
           type="checkbox"
-          id={'threeTransfer'}
-          value={threeTransfer}
+          id={'transfer3'}
+          value={transfer3}
           onClick={(e) => {
+            dispatch(threeTransfer())
             select(e)
           }}
         ></input>
-        <img src={threeTransfer ? chbch : chb} className="App-logo" alt="logo" />3 пересадки
+        <img src={transfer3 ? chbch : chb} className="App-logo" alt="logo" />3 пересадки
       </label>
     </div>
   )

@@ -27,11 +27,6 @@ const reducer = (state = defaultState, action) => {
         ticketCount: state.ticketCount + 5,
       }
 
-    case 'searchId':
-      return {
-        ...state,
-        searchId: action.id,
-      }
     case 'tickets':
       return {
         ...state,
